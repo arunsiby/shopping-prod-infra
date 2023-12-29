@@ -1,7 +1,7 @@
 # KeyPair Creation                         
 
 
-resource "aws_key_pair" "my_key1" {
+resource "aws_key_pair" "my_key" {
 
   key_name   = "${var.project_name}-${var.project_env}"
   public_key = file("mykey.pub")
@@ -62,7 +62,7 @@ resource "aws_instance" "frontend" {
 
   ami                    = var.instance_ami
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.my_key1.key_name
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [resource.aws_security_group.shopping.id]
   tags = {
     "Name" = "${var.project_name}-${var.project_env}-frontend"
