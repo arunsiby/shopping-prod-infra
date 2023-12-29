@@ -15,7 +15,7 @@ on:
         - t2.small
         default: "t2.micro"
 
-      ami:
+      instance_ami:
         type: string
         description: "Instance ami"
         required: true
@@ -56,7 +56,7 @@ jobs:
         run: |
            terraform plan \
              -var "instance_type=${{ github.event.inputs.instance_type }}" \
-             -var "ami=${{ github.event.inputs.ami }}"
+             -var "instance_ami=${{ github.event.inputs.instance_ami }}"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.PROD_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_SECRET_KEY }}
@@ -67,7 +67,7 @@ jobs:
         run: |
            terraform apply \
              -var "instance_type=${{ github.event.inputs.instance_type }}" \
-             -var "ami=${{ github.event.inputs.ami }}" \
+             -var "instance_ami=${{ github.event.inputs.instance_ami }}" \
              -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.PROD_ACCESS_KEY }}

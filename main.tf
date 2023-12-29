@@ -60,7 +60,7 @@ resource "aws_security_group" "shopping" {
 
 resource "aws_instance" "frontend" {
 
-  ami                    = var.ami
+  ami                    = var.instance_ami
   instance_type          = var.instance_type
   key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [resource.aws_security_group.shopping.id]
